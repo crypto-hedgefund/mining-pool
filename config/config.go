@@ -1,11 +1,4 @@
-/*
-	config.go
-
-	uses `spf13/viper` package to read from config.yml
-	populates config and nested structs to allow program to access vars
-*/
-
-package main
+package config
 
 import (
 	"fmt"
