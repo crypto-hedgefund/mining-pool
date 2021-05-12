@@ -28,9 +28,16 @@ func main() {
 
 	// Check if redis server is up
 	pong, err := client.Ping().Result()
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	fmt.Println(pong, err)
+	fmt.Printf("redis reply: %v", pong)
 
 	_ = client
 	_ = config
+
+	// Prevent goroutines from terminating early
+	quit := make(chan bool)
+	<-quit
 }
