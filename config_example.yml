@@ -1,7 +1,7 @@
 # Server configurations
-server:
-  host: "localhost"
-  port: 8000
+redis:
+  address: "localhost"
+  port: 6379
 
 # Database credentials
 database:
