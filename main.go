@@ -1,11 +1,16 @@
 package main
 
 import (
-	"github.com/crypto-hedgefund/mining-pool/config"
+	"log"
+
+	"main.go/config"
 )
 
 func main() {
-	config := config.Setup()
+	config, err := config.Setup()
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	_ = config
 }
