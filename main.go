@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/solojungle/go-mining-pool/config"
+	"github.com/crypto-hedgefund/mining-pool/config"
 )
 
 func main() {
