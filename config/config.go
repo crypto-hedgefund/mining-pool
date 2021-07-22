@@ -9,6 +9,7 @@ import (
 type Config struct {
 	Redis    RedisConfig
 	Database DatabaseConfig
+	RPC      RPCConfig
 }
 
 type RedisConfig struct {
@@ -19,6 +20,11 @@ type RedisConfig struct {
 type DatabaseConfig struct {
 	User     string
 	Password string
+}
+
+type RPCConfig struct {
+	Address string
+	Port    string
 }
 
 func Setup() (Config, error) {
