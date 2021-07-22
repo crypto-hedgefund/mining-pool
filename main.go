@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/go-redis/redis"
-
 	"main.go/config"
+	"main.go/redis"
+	"main.go/stats"
 )
 
 func main() {
@@ -16,25 +16,24 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// Get address from config
-	redisAddress := fmt.Sprintf("%v:%v", config.Redis.Address, config.Redis.Port)
-
-	// Connection to redis
-	client := redis.NewClient(&redis.Options{
-		Addr:     redisAddress,
-		Password: "",
-		DB:       0,
-	})
+	// Get redis client instance
+	redisClient := redis.NewRedisClient(config)
 
 	// Check if redis server is up
-	pong, err := client.Ping().Result()
+	pong, err := redisClient.Ping()
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	fmt.Printf("redis reply: %v", pong)
 
-	_ = client
+	// Start services
+	// 		Stats
+	// 		Work
+	// 		Payout
+
+	statService := stats.NewStatsService()
+	statService.Start()
+
 	_ = config
 
 	// Prevent goroutines from terminating early
